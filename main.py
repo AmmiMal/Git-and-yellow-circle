@@ -2,11 +2,11 @@ import sys
 
 from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
+from PyQt5.QtWidgets import QMainWindow, QApplication
 from random import randrange
 
 
-class Example(QMainWindow):
+class LoadUI(QMainWindow):
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -15,6 +15,14 @@ class Example(QMainWindow):
         self.setGeometry(300, 300, 400, 400)
         uic.loadUi('UI.ui', self)
         self.setWindowTitle('Git и желтые окружности')
+
+
+class Example(LoadUI):
+    def __init__(self):
+        LoadUI.__init__(self)
+        self.init()
+
+    def init(self):
         self.pushButton.clicked.connect(self.paint)
         self.do_paint = False
 
@@ -30,7 +38,7 @@ class Example(QMainWindow):
         self.repaint()
 
     def draw_circle(self, qp):
-        n = randrange(3, 25)
+        n = randrange(3, 50)
         for i in range(n):
             qp.setBrush(QColor(randrange(256), randrange(256), randrange(256)))
             diam = randrange(10, 50)
@@ -39,6 +47,7 @@ class Example(QMainWindow):
 
 def except_hook(cls, exception, traceback):
     sys.__excepthook__(cls, exception, traceback)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
