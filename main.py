@@ -32,7 +32,7 @@ class Example(QMainWindow):
     def draw_circle(self, qp):
         n = randrange(3, 25)
         for i in range(n):
-            qp.setBrush(QColor(randrange(128, 256), randrange(128, 256), 0))
+            qp.setBrush(QColor(randrange(256), randrange(256), randrange(256)))
             diam = randrange(10, 50)
             qp.drawEllipse(randrange(400 - diam), randrange(400 - diam), diam, diam)
 
